@@ -1,0 +1,24 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    url: string;
+    pubDate: string | Date;
+}
+
+const { title, description, url, pubDate } = Astro.props;
+const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+});
+---
+
+<a class="card post-card interactive-card" href={url}>
+    <p class="post-date">{formattedDate}</p>
+    <h2>{title}</h2>
+    <p class="muted">{description}</p>
+    <div class="tags">
+        {Astro.slots.default ? <slot /> : null}
+    </div>
+</a>

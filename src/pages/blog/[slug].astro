@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/Baselayout.astro';
+import { posts, type BlogPost } from '../../data/blog';
+
+export function getStaticPaths(): Array<{ params: { slug: string }; props: { post: BlogPost } }> {
+    return posts.map((post: BlogPost) => ({
+        params: { slug: post.slug },
+        props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = post;
+---
+
+<BaseLayout title={post.frontmatter.title}>
+    <article class="prose">
+        <a href="/blog" class="back-link">← সব পোস্ট</a>
+        <p class="post-date">{post.frontmatter.pubDate.toString()}</p>
+        <h1>{post.frontmatter.title}</h1>
+        <p class="lead muted">{post.frontmatter.description}</p>
+        <div class="tags">
+            {post.frontmatter.tags?.map((tag: string) => <span class="tag">{tag}</span>)}
+        </div>
+        <hr />
+        <Content />
+    </article>
+</BaseLayout>

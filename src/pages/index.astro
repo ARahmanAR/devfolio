@@ -5,10 +5,10 @@ import { site } from "../data/site.ts";
 
 <BaseLayout title="Home">
   <section class="hero">
-  <h1>Hi, I'm {site.name} 👋</h1>
-  <p class="muted">Role: {site.role}</p>
-  <p>{site.bio}</p>
-    {site.openToWork && <span>✅ I'm currently open to work opportunities!</span>}
+  <p class="eyebrow">{site.role} · Personal space</p>
+  <h1>ভাবনা থেকে<br /><span class="accent-text">বাস্তবতায়।</span></h1>
+  <p class="muted hero-copy">আমি {site.name} — শেখা, তৈরি করা আর ওয়েবের সুন্দর সম্ভাবনাগুলো নিয়ে লিখি।</p>
+    {site.openToWork && <span class="status-pill"><span></span> নতুন সুযোগের জন্য খোলা</span>}
   <ul class="socials">
     {
       site.socials.map((social) => (
@@ -21,7 +21,7 @@ import { site } from "../data/site.ts";
 
 
   <a href="/blog" class="btn">
-    Read My Blog
+    আমার লেখা পড়ুন <span aria-hidden="true">↗</span>
   </a>
   </section>
 </BaseLayout>

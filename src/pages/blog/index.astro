@@ -1,7 +1,20 @@
 ---
 import BaseLayout from '../../layouts/Baselayout.astro';
+import { posts } from '../../data/blog';
+import PostCard from '../../components/PostCard.astro';
 ---
 <BaseLayout title="Blog">
-    <h1>Blog</h1>
-    <h1 class="muted">Post গুলো খুব তাড়াতাড়ি আসছে...</h1>
+    <section class="hero">
+        <p class="eyebrow">Writing</p>
+        <h1>Blog</h1>
+        <p class="muted">শেখা, তৈরি করা এবং ওয়েবের পথে পাওয়া ছোট ছোট নোট।</p>
+    </section>
+
+    <section class="grid" aria-label="Blog posts">
+        {posts.map((post) => (
+            <PostCard title={post.frontmatter.title} description={post.frontmatter.description} url={`/blog/${post.slug}`} pubDate={post.frontmatter.pubDate}>
+                {post.frontmatter.tags?.map((tag) => <span class="tag">{tag}</span>)}
+            </PostCard>
+        ))}
+    </section>
 </BaseLayout>
